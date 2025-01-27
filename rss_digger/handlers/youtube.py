@@ -14,7 +14,7 @@ from rss_digger.exceptions import MissingConfigError
 logger = logging.getLogger(__name__)
 
 YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY")
-if not YOUTUBE_API_KEY:
+if not YOUTUBE_API_KEY:  # pragma: no cover
     logger.error(
         "YOUTUBE_API_KEY environment variable not set, you won't be able to fetch Youtube Channels with /user/ format"
     )
@@ -80,7 +80,7 @@ class YoutubeChannelHandler:
             ]
 
         if (
-                furl_url.path.segments[0] == "c" and len(furl_url.path.segments) > 1
+            furl_url.path.segments[0] == "c" and len(furl_url.path.segments) > 1
         ) or furl_url.path.segments[0].startswith("@"):
             rss_link = await cls.__get_rss_link_for_channel(url=furl_url.url)
             return [rss_link]
