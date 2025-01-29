@@ -131,7 +131,4 @@ class RSSHandler:
             else:
                 raise InvalidFeedURLException
 
-        if hasattr(parsed_content, "bozo_exception"):
-            raise InvalidFeedURLException
-
         return [url]

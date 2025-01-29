@@ -12,6 +12,25 @@ With RSS Digger, you can:
 
 🚀 Coming soon to PyPI!
 
+## Quickstart
+
+```python
+import asyncio
+
+from rss_digger import get_rss_feeds_for
+
+
+async def main():
+  rss_url = "https://realpython.com"
+  rss_links = await get_rss_feeds_for(url=rss_url)
+
+  print(rss_links)  # ["https://realpython.com/atom.xml", ]
+
+
+if __name__ == "__main__":
+  asyncio.run(main())
+```
+
 ## Features
 
 - YouTube Support: Extract RSS feeds from YouTube channel URLs.
