@@ -10,7 +10,9 @@ With RSS Digger, you can:
 - Handle complex URLs like YouTube channels, subreddits, and more.
 - Easily integrate RSS feed discovery into your projects.
 
-🚀 Coming soon to PyPI!
+```bash
+pip install rss-digger
+```
 
 ## Quickstart
 

@@ -1,9 +1,9 @@
 [project]
 name = "rss-digger"
-version = "0.1.0"
+version = "0.1.2"
 description = "Retrieve a RSS feed given an URL."
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.12"
 dependencies = [
     "beautifulsoup4>=4.12.3",
     "feedparser>=6.0.11",
