@@ -1,6 +1,6 @@
 import pytest
 
-from rss_digger.exceptions import MissingConfigError
+from rss_digger.exceptions import MissingConfigException
 from rss_digger.handlers.youtube import YoutubeChannelHandler
 
 
@@ -83,7 +83,7 @@ async def test_youtube_user_handler_missing_youtube_api(
     monkeypatch.setattr("rss_digger.handlers.youtube.YOUTUBE_API_KEY", None)
 
     youtube_channel_handler = YoutubeChannelHandler()
-    with pytest.raises(MissingConfigError):
+    with pytest.raises(MissingConfigException):
         await youtube_channel_handler.extract_feeds_links(url)
 
 

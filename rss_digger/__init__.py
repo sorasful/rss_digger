@@ -1,35 +1,30 @@
-# from rss_digger.handlers import RSSHandler, YoutubeChannelHandler
-# from furl import furl
-#
-# HANDLERS = [
-#     YoutubeChannelHandler,
-# ]
-#
-# def get_handler_for(url: str | furl) -> RSSHandler:
-#     if isinstance(url, str):
-#         url = furl(url)
-#
-#     for handler in HANDLERS:
-#         handler.check_is_valid(url)
-#
-#
-# def get_rss_feeds_for(url: str, load_js: bool = False) -> list[str]:
-#     """
-#
-#     :param url:
-#     :param load_js:
-#     :return:
-#     """
-#     furl_url = furl(url=url)
-#
-#     if not furl_url.path.isabsolute:
-#         raise ValueError("URL must be absolute")
-#
-#     if furl_url.scheme not in {"http", "https"}:
-#         raise ValueError("URL scheme must be http or https")
-#
-#     handler = get_handler_for(url=url)
-#
-#     feeds_links = handler.extract_feeds_links(url=url)
-#
-#     return feeds_links
+from rss_digger.handlers import (
+    RSSHandler,
+    YoutubeChannelHandler,
+    RedditHandler,
+    GenericRSSHandler,
+)
+from furl import furl
+
+HANDLERS: list[GenericRSSHandler] = [
+    RSSHandler,
+    RedditHandler,
+    YoutubeChannelHandler,
+]
+
+
+async def get_rss_feeds_for(url: str) -> list[str]:
+    furl_url = furl(url=url)
+
+    if not furl_url.path.isabsolute:
+        raise ValueError("URL must be absolute")
+
+    if furl_url.scheme not in {"http", "https"}:
+        raise ValueError("URL scheme must be http or https")
+
+    for handler in HANDLERS:
+        feeds_links = await handler.extract_feeds_links(url=url)
+        if feeds_links:
+            return feeds_links
+
+    return []

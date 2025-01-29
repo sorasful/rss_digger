@@ -9,7 +9,7 @@ import httpx
 import unidecode
 from furl import furl
 
-from rss_digger.exceptions import MissingConfigError
+from rss_digger.exceptions import MissingConfigException
 
 logger = logging.getLogger(__name__)
 
@@ -87,7 +87,7 @@ class YoutubeChannelHandler:
 
         if furl_url.path.segments[0] == "user" and len(furl_url.path.segments) > 1:
             if not YOUTUBE_API_KEY:
-                raise MissingConfigError(
+                raise MissingConfigException(
                     "To retrieve feed from this url you need to setup your YOUTUBE_API_KEY as env variable"
                 )
             rss_link = await cls.__get_rss_link_for_user(url=furl_url.url)
