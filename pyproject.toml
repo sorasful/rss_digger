@@ -1,6 +1,6 @@
 [project]
 name = "rss-digger"
-version = "0.1.2"
+version = "0.1.3"
 description = "Retrieve a RSS feed given an URL."
 readme = "README.md"
 requires-python = ">=3.12"
