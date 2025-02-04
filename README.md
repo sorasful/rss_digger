@@ -47,3 +47,13 @@ Blogs and Websites: Detect RSS feeds from blogs and news websites.
 
 Asynchronous: Built with asyncio for efficient, non-blocking operations.
 
+
+### Release process 
+
+
+```bash 
+
+uv build
+uv run twine upload --skip-existing   --verbose dist/*
+
+```
